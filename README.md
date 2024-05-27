@@ -37,9 +37,12 @@ Some features are similar to [this example](https://todomvc.com/examples/react/d
   - [x] Create a function to handle changes in the first name input field
   - [x] Create a function to handle changes in the last name input field
   - [x] Attach Handlers to Inputs
-- [ ]
-- [ ]
-- [ ]
+- [x] Create a react form component
+- [x] Figure out how to submit the input in the console (handleSubmit)
+- [ ] Figure out how to enter the submission by pressing return
+- [ ] Create a function to handle form submission (handleSubmit).
+  - [ ] Process the input values (e.g., add a new guest)
+  - [ ] Clear inputs
 - [ ]
 - [ ]
 - [ ]

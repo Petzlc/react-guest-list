@@ -31,12 +31,12 @@ Some features are similar to [this example](https://todomvc.com/examples/react/d
 - [x] Set the related label to the fields
   - [x] First name field needs to have related label containing `First name`
   - [x] Last name field needs to have related label containing `Last name`
-- [ ] Import useState Hook
-- [ ] Manage input states
-  - [ ] Initialize state variables for `First name` & `Last name` using the useState hook
-  - [ ] Create a function to handle changes in the first name input field
-  - [ ] Create a function to handle changes in the last name input field
-  - [ ] Attach Handlers to Inputs
+- [x] Import useState Hook
+- [x] Manage input states
+  - [x] Initialize state variables for `First name` & `Last name` using the useState hook
+  - [x] Create a function to handle changes in the first name input field
+  - [x] Create a function to handle changes in the last name input field
+  - [x] Attach Handlers to Inputs
 - [ ]
 - [ ]
 - [ ]

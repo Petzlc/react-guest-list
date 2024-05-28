@@ -6,6 +6,7 @@ export default function TestInput() {
     firstName: '', // Initial state of name input fields are empty strings
     lastName: '',
   });
+
   const handleChange = (event) => {
     // single function that handles change for both input fields. It extracts name and value properties from the input fields and updates the state value for that input field using setFormData().
     const { name, value } = event.target;
@@ -14,7 +15,13 @@ export default function TestInput() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
+    setFormData({
+      // resets the input fields to empty
+      firstName: '',
+      lastName: '',
+    });
   };
+
   return (
     <form onSubmit={handleSubmit}>
       {' '}

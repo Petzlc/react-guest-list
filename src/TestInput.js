@@ -26,7 +26,7 @@ export default function TestInput() {
     <form onSubmit={handleSubmit}>
       {' '}
       {/* Input boxes with First and Last name in a form and accurate label*/}
-      <label>
+      <label htmlFor="First name">
         First Name:
         <input
           name="firstName"
@@ -35,7 +35,7 @@ export default function TestInput() {
           onChange={handleChange} // handleChange is passed on to the onChange() event
         />
       </label>
-      <label>
+      <label htmlFor="First name">
         Last Name:
         <input
           name="lastName"

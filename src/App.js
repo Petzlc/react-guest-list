@@ -1,5 +1,5 @@
 import './App.css';
-import InputFields from './InputFields';
+// import InputFields from './InputFields';
 import TestInput from './TestInput';
 
 export default function App() {

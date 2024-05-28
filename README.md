@@ -39,18 +39,18 @@ Some features are similar to [this example](https://todomvc.com/examples/react/d
   - [x] Attach Handlers to Inputs
 - [x] Create a react form component
 - [x] Figure out how to submit the input in the console (handleSubmit)
-- [ ] Figure out how to enter the submission by pressing return
-- [ ] Create a function to handle form submission (handleSubmit).
-  - [ ] Process the input values (e.g., add a new guest)
-  - [ ] Clear inputs
+- [x] Figure out how to enter the submission by pressing return
+- [x] Create a function to handle form submission (handleSubmit).
+  - [x] Process the input values (e.g., add a new guest)
+  - [x] Clear inputs
+- [x]Set up API (https://github.com/upleveled/express-guest-list-api-memory-data-store)
+- [ ] Save the data somehow to the API
+- [ ] Fetch the Data from the API
 - [ ]
 - [ ]
 - [ ]
 - [ ]
-- [ ]
-- [ ]
-- [ ] Figure out how to create a guest upon pressing <kbd>Return</kbd> in the last name input
-- [ ] Clear input fields on submission.
+- [ ] Create a Checkbox that sets the state to attending
 - [ ] Set default guest properties (not attending).
 
 ## Acceptance Criteria

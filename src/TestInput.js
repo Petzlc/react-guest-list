@@ -7,6 +7,8 @@ export default function TestInput() {
     lastName: '',
   });
 
+  const [submittedNames, setSubmittedNames] = useState([]);
+
   const handleChange = (event) => {
     // single function that handles change for both input fields. It extracts name and value properties from the input fields and updates the state value for that input field using setFormData().
     const { name, value } = event.target;
@@ -14,7 +16,9 @@ export default function TestInput() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    const { firstName, lastName } = formData;
     console.log(formData);
+    setSubmittedNames([...submittedNames, { firstName, lastName }]);
     setFormData({
       // resets the input fields to empty
       firstName: '',
@@ -45,6 +49,17 @@ export default function TestInput() {
         />
       </label>
       <input type="submit" value="Submit" />
+      <div>
+        <h2>Guest List</h2>
+        {submittedNames.map((name, index) => (
+          <div key={`${name.firstName}-${name.lastName}`}>
+            <p>Guest {index + 1}:</p>
+            <p>
+              {name.firstName} {name.lastName}
+            </p>
+          </div>
+        ))}
+      </div>
     </form>
   );
 }

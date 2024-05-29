@@ -43,6 +43,18 @@ Some features are similar to [this example](https://todomvc.com/examples/react/d
 - [x] Create a function to handle form submission (handleSubmit).
   - [x] Process the input values (e.g., add a new guest)
   - [x] Clear inputs
+- [x] Let the input appear on the website and not only in the console
+- [ ] Newly created guests should be set as not attending
+  - [ ] Identify the part of the code where the form submission occurs. This could be in a form submission handler function.
+  - [ ] Identify the function responsible for handling form submissions.
+  - [ ] Add Default Status to Form Data:
+    - [ ] Within the form submission handler function, access the form data containing the guest's first name, last name, and other relevant information.
+  - [ ] Set Default Status:
+    - [ ] Add code to set the default status as "not attending" to the guest being created. This could involve adding a property to the form data object or setting a state variable.
+  - [ ] Update Form Data State:
+    - [ ] If using state to manage form data, update the state with the new guest data including the default status.
+  - [ ] Test the Implementation:
+    - [ ] After implementing the default status logic, test the behavior by creating a new guest through user input. Verify that the default status is correctly set as "not attending".
 - [x]Set up API (https://github.com/upleveled/express-guest-list-api-memory-data-store)
 - [ ] Save the data somehow to the API
 - [ ] Fetch the Data from the API

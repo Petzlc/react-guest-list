@@ -59,6 +59,14 @@ Some features are similar to [this example](https://todomvc.com/examples/react/d
   - [x] Update Form Data State:
     - [x] If using state to manage form data, update the state with the new guest data including the default status.
 
+- [x] Set the div element that contains the guests to attribute 'data-test-id="guest"'
+- [ ] Setting a guest as "attending" by clicking on a checkbox
+
+  - [x] Create a checkbox
+  - [x] Create and onChange event to change the state after clicking the checkbox
+  - [x] Create a function to connect the onChange event to an output
+  - [ ] Connect the checkbox to the 'attending'-property
+
 - [x]Set up API (https://github.com/upleveled/express-guest-list-api-memory-data-store)
 - [ ] Save the data somehow to the API
 - [ ] Fetch the Data from the API

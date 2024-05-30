@@ -28,6 +28,11 @@ export default function TestInput() {
     });
   };
 
+  const [isChecked, setIsChecked] = useState(false);
+  const checkHandler = () => {
+    setIsChecked(!isChecked);
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       {' '}
@@ -71,6 +76,15 @@ export default function TestInput() {
               {name.firstName} {name.lastName}
             </p>
             <p>{name.attending ? 'attending' : 'not attending'}</p>
+            <label htmlFor="checkbox">
+              Attend
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={checkHandler}
+              />
+            </label>
+            <p>Checkbox is {isChecked ? 'checked' : 'unchecked'}</p>
           </div>
         ))}
       </div>

@@ -64,6 +64,7 @@ export default function TestInput() {
         {submittedNames.map((name, index) => (
           <div
             key={`${name.firstName}-${name.lastName}-${formData.attending}`} // maybe formData.attending will cause problems later on when changing the state
+            data-test-id="guest"
           >
             <p>Guest {index + 1}:</p>
             <p>

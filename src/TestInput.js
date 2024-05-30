@@ -28,7 +28,7 @@ export default function TestInput() {
     });
   };
 
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false); // Checkboxes of all guests change equally when clicking on one checkbox
   const checkHandler = () => {
     setIsChecked(!isChecked);
   };
@@ -77,6 +77,8 @@ export default function TestInput() {
             </p>
             <p>{name.attending ? 'attending' : 'not attending'}</p>
             <label htmlFor="checkbox">
+              {' '}
+              {/* Checkboxes of all guests change equally when clicking on one checkbox */}
               Attend
               <input
                 type="checkbox"
@@ -84,7 +86,8 @@ export default function TestInput() {
                 onChange={checkHandler}
               />
             </label>
-            <p>Checkbox is {isChecked ? 'checked' : 'unchecked'}</p>
+            <p>Checkbox is {isChecked ? 'checked' : 'unchecked'}</p>{' '}
+            {/* Checkboxes of all guests change equally when clicking on one checkbox */}
           </div>
         ))}
       </div>

@@ -37,4 +37,5 @@ export default function GuestListApi() {
       console.error('Error creating new guest:', error);
     }
   }
+  return;
 }

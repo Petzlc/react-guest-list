@@ -5,6 +5,7 @@ export default function TestInput() {
     // Function to contain a state object that holds the values of the form inputs
     firstName: '', // Initial state of name input fields are empty strings
     lastName: '',
+    attending: false, // initial state as a boolean
   });
 
   const [submittedNames, setSubmittedNames] = useState([]);
@@ -16,13 +17,14 @@ export default function TestInput() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { firstName, lastName } = formData;
+    const { firstName, lastName, attending } = formData;
     console.log(formData);
-    setSubmittedNames([...submittedNames, { firstName, lastName }]);
+    setSubmittedNames([...submittedNames, { firstName, lastName, attending }]);
     setFormData({
-      // resets the input fields to empty
+      // resets the input fields to empty and the attending-state to default
       firstName: '',
       lastName: '',
+      attending: false,
     });
   };
 
@@ -48,15 +50,26 @@ export default function TestInput() {
           onChange={handleChange} // handleChange is passed on to the onChange() event
         />
       </label>
+      {/* <label>
+        Attendence:
+        <input
+          type="attendence"
+          name="notAttending"
+          value={formData.attendence}
+        />
+      </label> */}
       <input type="submit" value="Submit" />
       <div>
         <h2>Guest List</h2>
         {submittedNames.map((name, index) => (
-          <div key={`${name.firstName}-${name.lastName}`}>
+          <div
+            key={`${name.firstName}-${name.lastName}-${formData.attending}`} // maybe formData.attending will cause problems later on when changing the state
+          >
             <p>Guest {index + 1}:</p>
             <p>
               {name.firstName} {name.lastName}
             </p>
+            <p>{name.attending ? 'attending' : 'not attending'}</p>
           </div>
         ))}
       </div>

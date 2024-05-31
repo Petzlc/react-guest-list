@@ -66,6 +66,7 @@ Some features are similar to [this example](https://todomvc.com/examples/react/d
   - [x] Create and onChange event to change the state after clicking the checkbox
   - [x] Create a function to connect the onChange event to an output
   - [ ] Connect the checkbox to the 'attending'-property
+  - [ ] Make sure that checking the checkbox only triggers the 'attending'-state of the targeted guest
 
 - [x]Set up API (https://github.com/upleveled/express-guest-list-api-memory-data-store)
 - [ ] Save the data somehow to the API

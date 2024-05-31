@@ -1,4 +1,5 @@
 import './App.css';
+import TestCheckbox from './TestCheckbox';
 // import InputFields from './InputFields';
 import TestInput from './TestInput';
 
@@ -20,6 +21,7 @@ export default function App() {
       <br />
       <br />
       <br />
+      <TestCheckbox />
     </>
   );
 }

@@ -82,11 +82,12 @@ export default function TestInput() {
               Attend
               <input
                 type="checkbox"
+                // value={attending}         ///
                 checked={isChecked}
-                onChange={checkHandler}
+                onChange={checkHandler} // onChnage={checkHanlder}
               />
             </label>
-            <p>Checkbox is {isChecked ? 'checked' : 'unchecked'}</p>{' '}
+            <p>Checkbox is {isChecked ? 'attending' : 'not attending'}</p>{' '}
             {/* Checkboxes of all guests change equally when clicking on one checkbox */}
           </div>
         ))}

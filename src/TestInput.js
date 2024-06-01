@@ -5,7 +5,7 @@ export default function TestInput() {
     // Function to contain a state object that holds the values of the form inputs
     firstName: '', // Initial state of name input fields are empty strings
     lastName: '',
-    attending: false, // initial state as a boolean
+    // attending: false, // initial state as a boolean   // maybe not necessary when you use toggleAttendance
   });
 
   const [submittedNames, setSubmittedNames] = useState([]);
@@ -17,20 +17,28 @@ export default function TestInput() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { firstName, lastName, attending } = formData;
+    const { firstName, lastName, attending } = formData; // maybe without attending since this should be taken care of by the toggleAttendance function
     console.log(formData);
-    setSubmittedNames([...submittedNames, { firstName, lastName, attending }]);
+    setSubmittedNames([...submittedNames, { firstName, lastName, attending }]); // maybe without attending since this should be taken care of by the toggleAttendance function
     setFormData({
       // resets the input fields to empty and the attending-state to default
       firstName: '',
       lastName: '',
-      attending: false,
+      attending: false, // maybe without attending since this should be taken care of by the toggleAttendance function
     });
   };
 
-  const [isChecked, setIsChecked] = useState(false); // Checkboxes of all guests change equally when clicking on one checkbox
-  const checkHandler = () => {
-    setIsChecked(!isChecked);
+  // const [isChecked, setIsChecked] = useState(false); // Checkboxes of all guests change equally when clicking on one checkbox
+  // const checkHandler = () => {
+  //   setIsChecked(!isChecked);
+  // };       let's see if i can solve this with a different function called toggleAttendance
+
+  const toggleAttendance = (index) => {
+    setSubmittedNames((prevNames) =>
+      prevNames.map((name, i) =>
+        i === index ? { ...name, attending: !name.attending } : name,
+      ),
+    );
   };
 
   return (
@@ -79,15 +87,17 @@ export default function TestInput() {
             <label htmlFor="checkbox">
               {' '}
               {/* Checkboxes of all guests change equally when clicking on one checkbox */}
-              Attend
+              {/* Attend */}
               <input
                 type="checkbox"
                 // value={attending}         ///
-                checked={isChecked}
-                onChange={checkHandler} // onChnage={checkHanlder}
+                checked={name.attending}
+                onChange={() => toggleAttendance(index)} // onChnage={checkHanlder}
+                aria-label={`${name.firstName} ${name.lastName} attending status`}
               />
+              attending
             </label>
-            <p>Checkbox is {isChecked ? 'attending' : 'not attending'}</p>{' '}
+            {/* <p>Checkbox is {isChecked ? 'attending' : 'not attending'}</p>{' '} */}
             {/* Checkboxes of all guests change equally when clicking on one checkbox */}
           </div>
         ))}

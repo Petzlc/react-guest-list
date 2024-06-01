@@ -17,14 +17,18 @@ export default function TestInput() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { firstName, lastName, attending } = formData; // maybe without attending since this should be taken care of by the toggleAttendance function
+    const { firstName, lastName } = formData; // maybe without attending since this should be taken care of by the toggleAttendance function
+    const newGuest = {
+      firstName,
+      lastName,
+      attending: false, // default value
+    };
     console.log(formData);
-    setSubmittedNames([...submittedNames, { firstName, lastName, attending }]); // maybe without attending since this should be taken care of by the toggleAttendance function
+    setSubmittedNames([...submittedNames, newGuest]);
     setFormData({
       // resets the input fields to empty and the attending-state to default
       firstName: '',
-      lastName: '',
-      attending: false, // maybe without attending since this should be taken care of by the toggleAttendance function
+      lastName: '', // maybe without attending since this should be taken care of by the toggleAttendance function
     });
   };
 
@@ -45,7 +49,7 @@ export default function TestInput() {
     <form onSubmit={handleSubmit}>
       {' '}
       {/* Input boxes with First and Last name in a form and accurate label*/}
-      <label htmlFor="First name">
+      <label htmlFor="firstName">
         First Name:
         <input
           name="firstName"
@@ -54,7 +58,7 @@ export default function TestInput() {
           onChange={handleChange} // handleChange is passed on to the onChange() event
         />
       </label>
-      <label htmlFor="First name">
+      <label htmlFor="lastName">
         Last Name:
         <input
           name="lastName"

@@ -1,5 +1,12 @@
 import { useState } from 'react';
 
+const baseUrl = 'http://localhost:4000';
+
+const response = await fetch(`${baseUrl}/guests`);
+const allGuests = await response.json();
+
+// Async function to show all guests in list (from express-guest-list-api)
+
 export default function TestInput() {
   const [formData, setFormData] = useState({
     // Function to contain a state object that holds the values of the form inputs
@@ -44,7 +51,14 @@ export default function TestInput() {
       ),
     );
   };
-
+  // const response = await fetch(`${baseUrl}/guests/1`, {
+  //   method: 'PUT',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({ attending: true }),
+  // });
+  // const updatedGuest = await response.json();
   return (
     <form onSubmit={handleSubmit}>
       {' '}

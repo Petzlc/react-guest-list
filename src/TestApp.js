@@ -22,21 +22,28 @@ export default function TestApp() {
 
   useEffect(() => {
     async function addGuest() {
-      const newGuest = {};
-    }
-  });
+      const newGuest = {
+        firstName: firstName,
+        lastName: lastName,
+        attending: false,
+      };
+    const response = await fetch(`${baseUrl}/guests`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ firstName: 'Karl', lastName: 'Horky' }),
+      });
+    const createdGuest = await response.json();
+    // resets input fields to empty input fields
+    setGuestList(newGuestList);
+    setFirstName('');
+    setLastName('');
+  }
 
   return (
     <div>
-      {guestList.map((guest) => {
-        return (
-          <div key={`user-${Number(guestList.uuid)}`}>
-            <p>
-              {guestList.name.first} {guestList.name.last}
-            </p>
-          </div>
-        );
-      })}
+
     </div>
   );
 }

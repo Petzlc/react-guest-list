@@ -26,7 +26,7 @@ export default function TestInput() {
     event.preventDefault();
     const { firstName, lastName } = formData; // maybe without attending since this should be taken care of by the toggleAttendance function
     const newGuest = {
-      firstName,
+      firstName,♦
       lastName,
       attending: false, // default value
     };

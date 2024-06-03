@@ -3,85 +3,86 @@ import { useEffect, useState } from 'react';
 const baseUrl = 'http://localhost:4000';
 
 export default function App() {
-  const [guestList, setGuestList] = useState([]);
+  const [guests, setGuests] = useState([]);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [loading, setLoading] = useState(true);
 
   // Fetching the whole guest list
   useEffect(() => {
-    async function guestListFetch() {
+    async function fetchGuests() {
       const response = await fetch(`${baseUrl}/guests` /* , {method:'GET',}*/);
-      const list = await response.json();
-      setGuestList(list);
-      console.log('list', list);
+      const allGuests = await response.json();
+      setGuests(allGuests);
+      console.log('allGuests', allGuests);
     }
-    guestListFetch().catch((error) => {
+    fetchGuests().catch((error) => {
       console.log(error);
     });
   }, []); // empty [] avoids endless loop
 
   // Adding a guest to the guest list
-  async function addGuest() {
-    const newGuest = {
-      firstName: firstName,
-      lastName: lastName,
-      attending: false,
-    };
+  const addGuest = async () => {
     const response = await fetch(`${baseUrl}/guests`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ firstName: 'Karl', lastName: 'Horky' }),
+      body: JSON.stringify({ firstName, lastName, attending: false }),
     });
     const createdGuest = await response.json();
-    // resets input fields to empty input fields
-    setGuestList([...guestList, createdGuest]);
+    setGuests([...guests, createdGuest]);
     setFirstName('');
     setLastName('');
-  }
-  // const newGuest = (event) => {
-  //   event.preventDefault();
-  //   addGuest();
+  };
 
-  async function changeAttending(id, attending) {
-    let notAttending;
-    if (attending === true) {
-      notAttending = false;
-    } else {
-      notAttending = true;
-    }
+  const deleteGuest = async (id) => {
+    await fetch(`${baseUrl}/guests/${id}`, { method: 'DELETE' });
+    setGuests(guests.filter((guest) => guest.id !== id));
+  };
 
+  const toggleAttending = async (id, attending) => {
     const response = await fetch(`${baseUrl}/guests/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ attending: notAttending }),
+      body: JSON.stringify({ attending: !attending }),
     });
-
     const updatedGuest = await response.json();
+    const updatedGuests = guests.map((guest) =>
+      guest.id === id ? updatedGuest : guest,
+    );
+    setGuests(updatedGuests);
+  };
 
-    // Create a new guest list with the updated guest
-    const newGuestList = guestList.map((guest) => {
-      if (guest.id === id) {
-        return {
-          ...guest,
-          attending: updatedGuest.attending,
-        };
-      }
-      return guest;
-    });
+  //   const updatedGuest = await response.json();
 
-    setGuestList(newGuestList);
-  }
+  //   // Create a new guest list with the updated guest
+  //   const newGuestList = guestList.map((guest) => {
+  //     if (guest.id === id) {
+  //       return {
+  //         ...guest,
+  //         attending: updatedGuest.attending,
+  //       };
+  //     }
+  //     return guest;
+  //   });
+
+  //   setGuestList(newGuestList);
+  // }
 
   return (
     <div>
       <h1>Guest List</h1>
-      <form onSubmit={(event) => event.preventDefault()}>
+      <form
+        onSubmit={async (event) => {
+          event.preventDefault();
+          await addGuest;
+        }}
+      >
         <label htmlFor="First name">
-          First Name
+          First Name:
           <input
             // id="First name"
             value={firstName}
@@ -90,15 +91,35 @@ export default function App() {
           />
         </label>
         <label htmlFor="Last name">
-          Last Name
+          Last Name:
           <input
             // id="Last name"
             value={lastName}
             onChange={(event) => setLastName(event.currentTarget.value)}
             placeholder="Last name"
+            onKeyPress={async((event) => {
+              if (event.key === 'Enter') {
+                event.preventDefault();
+                // await addGuest();
+              }
+            })}
           />
         </label>
       </form>
+      <ul>
+        {guests.map((guest) => (
+          <li key={guest.id} data-test-id="guest">
+            {guest.firstName} {guest.lastName}
+            <button onClick={() => deleteGuest(guest.id)}>Remove</button>
+            <input
+              type="checkbox"
+              checked={guest.attending}
+              onChange={() => toggleAttending(guest.id, guest.attending)}
+              aria-label={`${guest.firstName} ${guest.lastName} attending status`}
+            />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

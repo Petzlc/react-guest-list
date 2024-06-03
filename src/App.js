@@ -11,10 +11,12 @@ export default function App() {
   // Fetching the whole guest list
   useEffect(() => {
     async function fetchGuests() {
+      setLoading(true);
       const response = await fetch(`${baseUrl}/guests` /* , {method:'GET',}*/);
       const allGuests = await response.json();
       setGuests(allGuests);
       console.log('allGuests', allGuests);
+      setLoading(false);
     }
     fetchGuests().catch((error) => {
       console.log(error);
@@ -36,11 +38,13 @@ export default function App() {
     setLastName('');
   };
 
+  // Delete guests
   const deleteGuest = async (id) => {
     await fetch(`${baseUrl}/guests/${id}`, { method: 'DELETE' });
     setGuests(guests.filter((guest) => guest.id !== id));
   };
 
+  // changing the attending state
   const toggleAttending = async (id, attending) => {
     const response = await fetch(`${baseUrl}/guests/${id}`, {
       method: 'PUT',
@@ -55,6 +59,18 @@ export default function App() {
     );
     setGuests(updatedGuests);
   };
+
+  // Creates guest on pressing enter and clears the input fields
+  const handleKeyDown = async (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      await addGuest();
+    }
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   //   const updatedGuest = await response.json();
 
@@ -97,18 +113,13 @@ export default function App() {
             value={lastName}
             onChange={(event) => setLastName(event.currentTarget.value)}
             placeholder="Last name"
-            onKeyPress={async((event) => {
-              if (event.key === 'Enter') {
-                event.preventDefault();
-                // await addGuest();
-              }
-            })}
+            onKeyDown={handleKeyDown}
           />
         </label>
       </form>
       <ul>
         {guests.map((guest) => (
-          <li key={guest.id} data-test-id="guest">
+          <li key={`guest-${guest.id}`} data-test-id="guest">
             {guest.firstName} {guest.lastName}
             <button onClick={() => deleteGuest(guest.id)}>Remove</button>
             <input

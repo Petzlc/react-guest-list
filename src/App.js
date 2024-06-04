@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const baseUrl = 'http://localhost:4000';
+const baseUrl = 'https://6xy9xg-4000.csb.app';
 
 export default function App() {
   const [guests, setGuests] = useState([]);
